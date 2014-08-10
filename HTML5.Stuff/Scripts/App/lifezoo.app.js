@@ -1,36 +1,31 @@
-﻿lifezoo.configure({
+﻿LifeZoo.Configure({
     debug: true,
-    cache: {
-        scripts:true,
-        views:true,
-        models:true,
-        viewModels:true,
-        controllers: true,
-        plugins: true
+    xsocket: {
+        "path": "ws://" + location.hostname + ":4502",
+        "controller": ["lzconfig", "lzcontent"]
     },
     // paths allow shortening url for script/html/css loading
-    paths: [
-        { "name": "lifezoo", "path": "/scripts/lib/lifezoo/" },
-        { "name": "zepto", "path": "/scripts/lib/zepto/" },
-        { "name": "jquery", "path": "/scripts/lib/jquery/" },
-        { "name": "modernizr", "path": "/scripts/lib/modernizr/" },
-        { "name": "bootstrap", "path": "/scripts/lib/bootstrap/" },
-        { "name": "plugins", "path": "/scripts/app/plugins/" },
-        { "name": "controllers", "path": "/scripts/app/controllers/" },
-        { "name": "models", "path": "/scripts/app/models/" },
-        { "name": "views", "path": "/scripts/app/views/" }
-    ],
+    paths: {
+        "xsockets": "scripts/lib/xsockets/",
+        "lifezoo": "scripts/lib/lifezoo/",
+        "zepto": "scripts/lib/zepto/" ,
+        "jquery": "scripts/lib/jquery/" ,
+        "modernizr": "scripts/lib/modernizr/" ,
+        "bootstrap": "scripts/lib/bootstrap/" ,
+        "plugins": "scripts/app/plugins/" ,
+        "controllers": "scripts/app/controllers/" ,
+        "models": "scripts/app/models/" ,
+        "views": "scripts/app/views/" 
+    },
     // requiredLibs are loaded and kept running forever
     requiredLibs: [
-        { "name": "jquery", "path": "jquery/jquery-1.10.2.js" },
-        { "name": "modernizr", "path": "modernizr/modernizr-2.6.2.js" },
-        { "name": "bootstrap", "path": "bootstrap/bootstrap.js" },
-    ],
-    //route define the site pages
-    routes: [
-         { routeUrl: "shell", controller: "controllers/shell.js", model: "", view: "views/shell.html", title: "Homepage" },
-         { routeUrl: "index", controller: "controllers/index.js", model: "index", view: "index", title: "Homepage" },
-         { routeUrl: "test1", controller: "controllers/test1.js", model: "test1", view: "test1", title: "Test page 1" }
-    ],
-    setRoot: "shell"
+        { "name": "xsockets", "path": "xsockets/xsockets.latest.beta.js" },
+        //{ "name": "jquery", "path": "jquery/jquery-1.10.2.js" },
+        //{ "name": "bootstrap", "path": "bootstrap/bootstrap.js" },
+        //{ "name": "modernizr", "path": "modernizr/modernizr-2.6.2.js" },
+    ]
+}).on(function () {
+    LifeZoo.CommunicationChannel.InitChannel();
+    LifeZoo.Navigation.InitNavigation();
+    console.warn("DONE CALLED");
 });

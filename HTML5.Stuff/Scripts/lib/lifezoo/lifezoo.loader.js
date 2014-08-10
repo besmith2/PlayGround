@@ -37,33 +37,6 @@ var lifezoo = (function () {
         if (/.*controller*\(.*/.test(script)) return "controller";
         return "unknown";
     };
-
-
-
-    //////var bgAjax = new Worker("scripts/WebWorkers/ww.lifezoo.fileloader.js")
-    ////var bgAjaxPostMessage = function (msg) {
-    ////    if (sessionStorage[msg.url] != undefined) {
-    ////        bgAjaxOnMessage(JSON.parse(sessionStorage[msg.url]));
-    ////    } else {
-    ////        bgAjax.postMessage(msg);
-    ////    }
-    ////};
-    ////var bgAjaxOnMessage = function (data) {
-    ////    if (data.js) {
-    ////        loadEval(data);
-    ////    }
-    ////};
-
-    ////bgAjax.onmessage = function (event) {
-    ////    if(!debug) sessionStorage[event.data.url] = JSON.stringify(event.data);
-    ////    bgAjaxOnMessage(event.data);
-
-    ////}
-
-    ////bgAjax.onerror = function () {
-    ////    lz.warn("bgAjax.onerror", arguments);
-    ////};
-
     var config = {};
     var loadTagSync = function (path, lib, callback) {
 

@@ -1,0 +1,37 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <script src="Scripts/lib/jquery/jquery-2.1.1.min.js"></script>
+    <script src="Scripts/XSockets.latest.beta.js"></script>
+</head>
+<body>
+    <button>foo</button>
+    <div></div>
+    <script>
+    var chat;
+    $(function () {
+        chat = new XSockets.WebSocket("ws://127.0.0.1:4502",['xsocket']);
+
+        chat.controller('xsocket').subscribe('notchat', function (data) {
+            console.log("notchat", data);
+        });
+
+
+        chat.controller('xsocket').subscribe('chatmessage', function (data) {
+            console.log("sub-chatmessage", data);
+        });
+        chat.controller('xsocket').subscribe('timedstuff', function (data) {
+            console.log("timedstuff", data);
+        });
+        $('button').on('click', function () {
+            chat.controller('xsocket').invoke('chatmessage', { Text: 'Hello JS RealTime', From: 'Website' });
+        });
+
+
+    });
+    </script>
+</body>
+
+
+</html>
